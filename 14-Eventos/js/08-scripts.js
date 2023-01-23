@@ -1,3 +1,5 @@
+// agregar funciones al html creado desde JS
+
 // Evitar la propagación con contenido creado...
 const parrafo1 = document.createElement('P');
 parrafo1.textContent = 'Concierto';
@@ -8,11 +10,15 @@ parrafo1.classList.add('concierto');
 const parrafo2 = document.createElement('P');
 parrafo2.textContent = 'Concierto de Rock';
 parrafo2.classList.add('titulo');
+parrafo2.onclick = nuevaFuncion; // llamando una funcion que cree abajo... asi no me permite enviar elementos por parametros... toca con una anonima
 
 // 3er parrafo...
 const parrafo3 = document.createElement('p');
 parrafo3.textContent = '$800 por persona';
 parrafo3.classList.add('precio');
+parrafo3.onclick = () => {
+    segundaFuncion('Cristian') // una funcion que llama la segunda funcion y ahi si le podemos pasar algo por parametro
+}
 
 // crear el div...
 const info = document.createElement('div');
@@ -38,3 +44,13 @@ contenedorCard.appendChild(info);
 // Insertarlo en el HTML...
 const contenedor = document.querySelector('.hacer .contenedor-cards');
 contenedor.appendChild(contenedorCard); // al inicio info
+
+// funcion que llama el .titulo
+function nuevaFuncion(){
+    console.log('Click en titulo desde nueva funcion');
+}
+
+// funcion que llama el .precio
+function segundaFuncion(id){ // agregamos el parametro a recibir
+    console.log('Click en el precio por', id); // lo mostramos en consola
+}
