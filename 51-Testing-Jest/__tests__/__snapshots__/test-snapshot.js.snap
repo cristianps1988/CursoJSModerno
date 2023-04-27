@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verificar el cliente Verificar el cliente completo 1`] = `
+{
+  "nombre": "Cristian",
+  "saldo": 500,
+  "tipo": "Premium",
+}
+`;
