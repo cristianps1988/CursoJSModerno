@@ -37,6 +37,9 @@ function consultarCriptomonedas() {
 // llena el select 
 function selectCriptomonedas(criptomonedas) {
 
+    // medir el scripting
+    const inicio = performance.now() // nos da un tiempo actual
+
     criptomonedas.forEach( cripto => {
         const { FullName, Name } = cripto.CoinInfo;
         const option = document.createElement('option');
@@ -45,6 +48,9 @@ function selectCriptomonedas(criptomonedas) {
         // insertar el HTML
         criptomonedasSelect.appendChild(option);
     });
+
+    const fin = performance.now() // aquí nos da otro tiempo actual
+    console.log(fin - inicio) // medimos la diferencia entre uno y otro, para ver el tiempo de carga
 
 }
 
@@ -88,6 +94,8 @@ function mostrarAlerta(mensaje) {
 
 
 function consultarAPI() {
+    // medir la consulta de la api
+    const inicio = performance.now()
 
     const { moneda, criptomoneda} = objBusqueda;
 
@@ -100,7 +108,9 @@ function consultarAPI() {
         .then(cotizacion => {
             mostrarCotizacionHTML(cotizacion.DISPLAY[criptomoneda][moneda]);
         });
-
+    
+    const fin = performance.now()
+    console.log(fin - inicio)
 }
 
 function mostrarCotizacionHTML(cotizacion) {
@@ -111,7 +121,7 @@ function mostrarCotizacionHTML(cotizacion) {
     const  { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE } = cotizacion;
 
 
-    debugger;
+    debugger; // alternativa a console.log para ver en consola lo que se está ejecutando
 
     const precio = document.createElement('p');
     precio.classList.add('precio');
